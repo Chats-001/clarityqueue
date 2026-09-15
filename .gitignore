@@ -1,0 +1,12 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+*.egg-info/
+artifacts/events.sqlite3
+data/generated/*.csv
+!data/generated/.gitkeep
+
