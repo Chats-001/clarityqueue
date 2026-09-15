@@ -9,4 +9,5 @@ __pycache__/
 artifacts/events.sqlite3
 data/generated/*.csv
 !data/generated/.gitkeep
-
+output/
+tmp/

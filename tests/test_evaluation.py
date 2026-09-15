@@ -1,5 +1,7 @@
 import sqlite3
 
+import pytest
+
 from clarityqueue.evaluation import classification_summary, retrieval_summary
 from clarityqueue.storage import initialize, log_event
 
@@ -23,6 +25,11 @@ def test_retrieval_summary_is_bounded(evidence_index, tickets):
 def test_retrieval_details_match_ticket_count(evidence_index, tickets):
     result = retrieval_summary(evidence_index, tickets.head(7))
     assert len(result["details"]) == 7
+
+
+def test_retrieval_summary_rejects_empty_ticket_set(evidence_index, tickets):
+    with pytest.raises(ValueError, match="at least one ticket"):
+        retrieval_summary(evidence_index, tickets.iloc[0:0])
 
 
 def test_storage_creates_event_table(tmp_path):

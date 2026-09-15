@@ -29,6 +29,8 @@ def classification_summary(y_true, y_pred, labels: list[str]) -> dict:
 
 
 def retrieval_summary(index, tickets: pd.DataFrame, threshold: float = 0.16) -> dict:
+    if tickets.empty:
+        raise ValueError("Retrieval evaluation requires at least one ticket")
     reciprocal_ranks = []
     hits_at_1 = 0
     hits_at_3 = 0
