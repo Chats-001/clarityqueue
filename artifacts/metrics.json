@@ -1,0 +1,168 @@
+{
+  "dataset": {
+    "generated_tickets": 360,
+    "held_out_issue_families": 5,
+    "held_out_tickets": 120,
+    "knowledge_articles": 15,
+    "random_seed": 17
+  },
+  "evaluation_note": "All metrics use a seeded held-out split of an original synthetic benchmark. They demonstrate methodology, not production performance.",
+  "operational": {
+    "abstention_rate": 0.0,
+    "automation_candidate_rate": 0.7416666666666667,
+    "critical_priority_recall": 1.0,
+    "end_to_end_accuracy_when_automated": 1.0,
+    "out_of_domain_abstention_rate": 0.875
+  },
+  "priority_model": {
+    "accuracy": 0.75,
+    "confusion_matrix": [
+      [
+        4,
+        16,
+        0,
+        0
+      ],
+      [
+        14,
+        35,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        41,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        10
+      ]
+    ],
+    "labels": [
+      "low",
+      "medium",
+      "high",
+      "critical"
+    ],
+    "macro_f1": 0.7276315789473684,
+    "per_class": {
+      "critical": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 10
+      },
+      "high": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 41
+      },
+      "low": {
+        "f1": 0.21052631578947367,
+        "precision": 0.2222222222222222,
+        "recall": 0.2,
+        "support": 20
+      },
+      "medium": {
+        "f1": 0.7,
+        "precision": 0.6862745098039216,
+        "recall": 0.7142857142857143,
+        "support": 49
+      }
+    }
+  },
+  "retrieval": {
+    "answer_coverage": 1.0,
+    "citation_rate": 1.0,
+    "hit_at_1": 1.0,
+    "hit_at_3": 1.0,
+    "mean_reciprocal_rank": 1.0,
+    "p95_retrieval_latency_ms": 0.7024347432889044,
+    "selective_accuracy": 1.0
+  },
+  "route_model": {
+    "accuracy": 0.85,
+    "confusion_matrix": [
+      [
+        16,
+        0,
+        1,
+        0,
+        7
+      ],
+      [
+        0,
+        24,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        15,
+        0,
+        9
+      ],
+      [
+        0,
+        0,
+        0,
+        24,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        23
+      ]
+    ],
+    "labels": [
+      "access",
+      "billing",
+      "data_sync",
+      "integration",
+      "performance"
+    ],
+    "macro_f1": 0.8519501133786849,
+    "per_class": {
+      "access": {
+        "f1": 0.8,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "support": 24
+      },
+      "billing": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 24
+      },
+      "data_sync": {
+        "f1": 0.75,
+        "precision": 0.9375,
+        "recall": 0.625,
+        "support": 24
+      },
+      "integration": {
+        "f1": 0.9795918367346939,
+        "precision": 0.96,
+        "recall": 1.0,
+        "support": 24
+      },
+      "performance": {
+        "f1": 0.7301587301587301,
+        "precision": 0.5897435897435898,
+        "recall": 0.9583333333333334,
+        "support": 24
+      }
+    }
+  }
+}

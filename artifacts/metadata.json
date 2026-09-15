@@ -1,0 +1,6 @@
+{
+  "approach": "TF-IDF logistic regression plus evidence retrieval",
+  "created_at": "2026-09-15T06:33:31.219596+00:00",
+  "model_version": "cq-20260915-75eb50c3",
+  "source_sha256": "75eb50c3aa15a7c81c986a7838e94dd490bde8bfb639737fc6915c388320c6c1"
+}
