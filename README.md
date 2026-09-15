@@ -1,9 +1,14 @@
 # ClarityQueue
 
-ClarityQueue is a small evidence-grounded support intelligence system. It reads an incoming case,
-predicts the right support team and urgency, retrieves a relevant runbook, and produces a cited
-next-step response only when the evidence is strong enough. The project combines interpretable ML,
-retrieval evaluation, analytics, FastAPI, SQLite/SQL, and a results-first Streamlit dashboard.
+ClarityQueue began as my first data science and AI project during a **Break Through Tech workshop
+in December 2025**. I later rebuilt and expanded the idea into an explainable support decision
+system that demonstrates not only how to train a model, but how to interpret its outcome, measure
+uncertainty, connect predictions to an operational decision, and communicate limitations honestly.
+
+The system reads an incoming case, predicts the right support team and urgency, retrieves a relevant
+runbook, and produces a cited next-step response only when the evidence is strong enough. It combines
+supervised and unsupervised ML, statistics, RAG evaluation, geospatial scenario analysis, FastAPI,
+SQLite/SQL, automated tests, and a results-first Streamlit dashboard.
 
 The useful question is not “Can an AI answer everything?” It is: **Which cases can the system help
 with reliably, and which should stay with a person?**
@@ -22,6 +27,18 @@ with reliably, and which should stay with a person?**
 These are reproducible results on an original synthetic benchmark of 360 tickets and 15 authored
 runbooks. Five complete issue families—one per route—are excluded from training and used only for
 evaluation. They demonstrate the methodology, not expected performance on real customer traffic.
+
+## What the outcome means
+
+The model is promising as an **assistant**, not as a replacement for support staff. It could pre-sort
+the 74.2% of cases that pass the current route-and-evidence gate, while leaving uncertain or unfamiliar
+requests for human review. The error analysis also gives a concrete next step: Access and Data sync
+cases that describe symptoms are sometimes mistaken for Performance problems, so better examples
+that separate symptoms from root causes should come before more automation.
+
+That conclusion is the most important result of the project. The dashboard is designed to show how I
+moved from reporting one accuracy score to asking practical data-science questions about uncertainty,
+model confidence, failure modes, retrieval safety, review workload, and responsible deployment.
 
 ## Product flow
 
@@ -50,6 +67,18 @@ The same evaluation harness could later compare embedding or LLM-based component
 the API contract.
 
 ## Run it
+
+The shortest path is one command from the repository folder:
+
+```bash
+make demo
+```
+
+Your browser will open the interactive dashboard at `http://localhost:8501`. The trained artifact
+is committed, so you can explore the graphs immediately. To regenerate every result first, run
+`make train`, followed by `make demo`.
+
+The equivalent manual setup is:
 
 ```bash
 python -m venv .venv
@@ -92,14 +121,31 @@ priority, confidence, answer status, and latency; raw ticket text is deliberatel
 
 ## Dashboard
 
-The landing page is written for someone reviewing outcomes, not model internals. It includes:
+The dashboard follows the project as a decision story rather than a collection of decorative charts:
 
-- four plain-English KPI cards;
-- per-team precision, recall, and F1;
-- a confusion matrix that exposes specific routing mistakes;
-- confidence distributions for correct and incorrect predictions;
-- an answer coverage-versus-quality curve;
-- a live case explorer with citations and abstention behavior.
+- an outcome funnel showing how 120 unseen cases become 89 safe automation candidates;
+- a normalized confusion matrix that turns mistakes into a data-collection recommendation;
+- a simulated US operations map connecting human-review volume to staffing capacity;
+- a calibration curve testing whether confidence scores deserve trust;
+- an unsupervised TF-IDF → SVD → k-means map of natural issue themes;
+- bootstrap and Wilson intervals communicating statistical uncertainty;
+- RAG similarity and threshold plots comparing relevant and out-of-domain questions;
+- a live case explorer showing classification signals, cited guidance, and abstention;
+- a student journey explaining what I learned and what I would build next.
+
+The map uses clearly labeled simulated locations and capacity. The model diagnostics, uncertainty
+estimates, and RAG results are calculated from the real held-out benchmark predictions.
+
+## My learning journey
+
+| Stage | What changed |
+|---|---|
+| December 2025 | Built my first data science/AI project at a Break Through Tech workshop |
+| First iteration | Learned preprocessing, TF-IDF, classification, and basic evaluation |
+| Rebuild | Added issue-family holdout testing, explainability, retrieval, citations, and an API |
+| Outcome analysis | Added calibration, uncertainty intervals, clustering, and error analysis |
+| Practical layer | Connected model abstention to a simulated staffing and location decision |
+| Next step | Evaluate real consented data, test fairness and drift, and run a shadow deployment |
 
 ## Repository guide
 
@@ -135,4 +181,3 @@ See [docs/MODEL_CARD.md](docs/MODEL_CARD.md).
 The ResilientNet brief inspired the emphasis on held-out evaluation, transparent risk, dashboards,
 SQL, and human-readable findings. ClarityQueue’s domain, data, architecture, code, API, models, and
 evaluation design are original and independently implemented.
-
