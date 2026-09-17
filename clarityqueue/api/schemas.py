@@ -26,6 +26,14 @@ class SearchRequest(BaseModel):
     query: str = Field(min_length=3, max_length=settings.max_text_length)
     limit: int = Field(default=3, ge=1, le=settings.max_results)
 
+    @field_validator("query")
+    @classmethod
+    def meaningful_query(cls, value: str) -> str:
+        cleaned = value.strip()
+        if not cleaned:
+            raise ValueError("query must not be blank")
+        return cleaned
+
 
 class TriageResponse(BaseModel):
     route: str

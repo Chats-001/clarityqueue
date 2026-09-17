@@ -79,6 +79,12 @@ def test_retrieve_limit_is_bounded(tmp_path, triage_model, evidence_index):
     assert client.post("/v1/retrieve", json={"query": "API errors", "limit": 99}).status_code == 422
 
 
+def test_blank_retrieval_query_is_rejected(tmp_path, triage_model, evidence_index):
+    client = client_for(tmp_path, triage_model, evidence_index)
+    response = client.post("/v1/retrieve", json={"query": "   "})
+    assert response.status_code == 422
+
+
 def test_metrics_endpoint(tmp_path, triage_model, evidence_index):
     client = client_for(tmp_path, triage_model, evidence_index)
     response = client.get("/v1/metrics")
